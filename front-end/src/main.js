@@ -3,7 +3,8 @@ import App from './App.vue'
 import router from './router'
 
 let data = {
-  currentHike : null
+  currentHike : null,
+  currentUser:null
 }
 
 new Vue({

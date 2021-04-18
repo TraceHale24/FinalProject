@@ -16,8 +16,6 @@
       </router-link>
     </div>
   </div>
-
-
   </div>
 </template>
 
@@ -51,7 +49,7 @@ export default {
       this.findHike = hike;
     },
     setHike(Hike) {
-      this.$root.$data.currentHike = Hike
+      this.$root.$data.currentHike = Hike;
     }
   }
 }

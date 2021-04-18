@@ -171,5 +171,40 @@ app.put('/api/reviews/:id', async(req,res) => {
   }
 });
 
+const userSchema = new mongoose.Schema({
+  Username: String,
+  Password: String,
+});
+
+const User = mongoose.model('User', userSchema);
+
+app.put('/api/Users',async(req,res)=>{
+  const User = new User({
+    userName: req.body.Username,
+    password:req.body.Password,
+  });
+  try {
+    await review.save();
+    res.send(User.userName);
+  }catch(error){
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+app.get('/api/Users', async (req, res) => {
+  try {
+    let User = await User.find();
+    res.send(User.userName);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+
+
+
+
 
 app.listen(3001, () => console.log('Server listening on port 3001!'));

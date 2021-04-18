@@ -44,12 +44,12 @@
                       <h1>Reviews</h1>
 
           <div class = "reviews" v-for="r in reviews" :key="r.id" @click="selectReview(r)"> 
-
             <div  v-if="r.hikeName === currentHike.hikeName">
               <h3 class="overflow">"{{r.text}}"</h3>
              <div class="userReview">
                 <em><h4>-{{r.userName}}</h4></em>
              </div>
+             <div v-if="r.userName === currentUser.userName">
              <div class = "buttons">
               <button @click="deleteReview(r)">Delete</button>
               <div v-if="editBox">
@@ -57,6 +57,7 @@
                 <button @click="editReview(r)">Submit</button>
               </div>
               <button v-if="!editBox" @click="editButton">Edit</button>
+             </div>
              </div>
             </div>
           </div>
