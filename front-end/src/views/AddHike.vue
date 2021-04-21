@@ -31,17 +31,12 @@
         </div>
 
         <h1>Add Your Own Review</h1>
-        <form>
-            <div class="input">
+          <div class="input">
             <input type = "text" v-model="text" placeholder="Review">
-      </div>
+          </div>
+          <button @click="upload(currentHike)">Submit</button>
 
-      <div class= "username">
-        <input type ="text" v-model ="userName" placeholder="Username">
-      </div>
-            <button type = "submit" @click="upload(currentHike)" >Submit</button>
-        </form>
-                      <h1>Reviews</h1>
+      <h1>Reviews</h1>
 
           <div class = "reviews" v-for="r in reviews" :key="r.id" @click="selectReview(r)"> 
             <div  v-if="r.hikeName === currentHike.hikeName">
@@ -49,7 +44,7 @@
              <div class="userReview">
                 <em><h4>-{{r.userName}}</h4></em>
              </div>
-             <div v-if="r.userName === currentUser.userName">
+             <div v-if="r.userName === currentUser">
              <div class = "buttons">
               <button @click="deleteReview(r)">Delete</button>
               <div v-if="editBox">
@@ -85,6 +80,9 @@ export default {
   computed: {
     currentHike(){
       return this.$root.$data.currentHike;
+    },
+    currentUser(){
+      return this.$root.$data.currentUser;
     }
     
     },
@@ -100,7 +98,7 @@ export default {
       try {
         let r1 = await axios.post('/api/reviews', {
           hikeName: currentHike.hikeName,
-          userName: this.userName,
+          userName: this.$root.$data.currentUser,
           text: this.text,
         });
         this.$root.$data.currentHike = currentHike;

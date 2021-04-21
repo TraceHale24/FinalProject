@@ -171,6 +171,7 @@ app.put('/api/reviews/:id', async(req,res) => {
   }
 });
 
+
 const userSchema = new mongoose.Schema({
   Username: String,
   Password: String,
@@ -178,30 +179,48 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-app.put('/api/Users',async(req,res)=>{
-  const User = new User({
-    userName: req.body.Username,
-    password:req.body.Password,
+app.put('/api/users',async(req,res)=>{
+  const user = new User({
+    Username: req.body.Username,
+    Password: req.body.Password,
   });
-  try {
-    await review.save();
-    res.send(User.userName);
+  try{
+    let userResponse = await User.findOne({
+      Username: req.body.Username
+    });
+    console.log(userResponse);
+    if(userResponse != undefined) {
+      console.log("Test, fail");
+      res.send(null);
+    }
+    else {
+      await user.save();
+      res.send(user.userName);
+    }
+    //console.log(user);
+    //console.log("We made it here");
+
   }catch(error){
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-app.get('/api/Users', async (req, res) => {
+app.get('/api/users/:Username', async(req, res) => {
+  //console.log(req.params.Username);
   try {
-    let User = await User.find();
-    res.send(User.userName);
+    let user = await User.findOne({
+      Username: req.params.Username
+    });
+    //console.log(req.params);
+    //console.log(user.Password);
+    res.send(user);
+
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
-
 
 
 
