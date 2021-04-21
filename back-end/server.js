@@ -180,7 +180,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 app.put('/api/users',async(req,res)=>{
-  const user = new User({
+  let user = new User({
     Username: req.body.Username,
     Password: req.body.Password,
   });
@@ -188,14 +188,15 @@ app.put('/api/users',async(req,res)=>{
     let userResponse = await User.findOne({
       Username: req.body.Username
     });
-    //console.log(userResponse);
-    if(userResponse != undefined) {
-      //console.log("Test, fail");
-      res.send(null);
+    console.log(userResponse);
+    if(userResponse == null) {
+      await user.save();
+      console.log(user);
+      res.send(user);
     }
     else {
-      await user.save();
-      res.send(user.userName);
+      console.log("sending null");
+      res.send(null);
     }
     //console.log(user);
     //console.log("We made it here");

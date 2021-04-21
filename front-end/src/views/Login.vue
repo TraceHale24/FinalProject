@@ -42,7 +42,9 @@ export default {
                   Password: this.Password
                 });
                 console.log(response);
-                if(response.data == "") {
+                console.log(response.data.Username);
+                if(response.data == ""||response.data.Username == undefined || response.data.Username == null) {
+                    //alert(response.data);
                     alert("Failed Register: Username Taken");
                     this.$root.$data.currentUser = undefined;
 
