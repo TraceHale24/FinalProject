@@ -43,7 +43,7 @@
 <div class ='footer'>
   <div class= 'footer-item'>
     <h3> Trace Hale and Conner Hammond</h3>
-    <h3><a href = 'https://github.com/TraceHale24/HikingLabFour'>Github</a></h3>
+    <h3><a href = 'https://github.com/TraceHale24/FinalProject'>Github</a></h3>
   </div>
 </div>
 </div>
