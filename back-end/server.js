@@ -60,7 +60,7 @@ app.post('/api/hikes', async (req, res) => {
     await hike.save();
     res.send(hike);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -70,7 +70,7 @@ app.get('/api/hikes', async (req, res) => {
     let hikes = await Hike.find();
     res.send(hikes);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -80,7 +80,7 @@ app.delete('/api/hikes/:id', async(req,res) => {
     await Hike.deleteOne({"_id": req.params.id});
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -100,7 +100,7 @@ app.put('/api/hikes/:id', async(req,res) => {
       }});
       res.sendStatus(200);
   } catch (error){
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -129,7 +129,7 @@ app.post('/api/reviews', async (req, res) => {
     await review.save();
     res.send(review);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -149,7 +149,7 @@ app.delete('/api/reviews/:id', async(req,res) => {
     await Review.deleteOne({"_id": req.params.id});
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -166,7 +166,7 @@ app.put('/api/reviews/:id', async(req,res) => {
       }});
       res.sendStatus(200);
   } catch (error){
-    console.log(error);
+   //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -188,9 +188,9 @@ app.put('/api/users',async(req,res)=>{
     let userResponse = await User.findOne({
       Username: req.body.Username
     });
-    console.log(userResponse);
+    //console.log(userResponse);
     if(userResponse != undefined) {
-      console.log("Test, fail");
+      //console.log("Test, fail");
       res.send(null);
     }
     else {
@@ -201,7 +201,7 @@ app.put('/api/users',async(req,res)=>{
     //console.log("We made it here");
 
   }catch(error){
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -217,7 +217,7 @@ app.get('/api/users/:Username', async(req, res) => {
     res.send(user);
 
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.sendStatus(500);
   }
 });
@@ -226,4 +226,4 @@ app.get('/api/users/:Username', async(req, res) => {
 
 
 
-app.listen(3001, () => console.log('Server listening on port 3001!'));
+app.listen(3004, () => console.log('Server listening on port 3001!'));
