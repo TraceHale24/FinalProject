@@ -96,16 +96,28 @@ export default {
     },
     async upload(currentHike) {
       try {
+        let currentUserName = this.$root.$data.currentUser;
+        if(currentUserName == null) {
+          currentUserName = "Anonymous";
+        }
+        else {
+          currentUserName = this.$root.$data.currentUser;
+        }
         let r1 = await axios.post('/api/reviews', {
           hikeName: currentHike.hikeName,
-          userName: this.$root.$data.currentUser,
+          userName: currentUserName,
           text: this.text,
         });
         this.$root.$data.currentHike = currentHike;
         this.addReview = r1.data; 
+        this.$forceUpdate();
+        this.getReviews();
+        return true;
+  
       } catch(error){
         //console.log(error);
       }
+
     },
     async getReviews() {
       try {
